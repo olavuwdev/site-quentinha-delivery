@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="shortcut icon" href="assets/imgs/QuentinhaCirgularLogo.png" type="image/x-icon">
+    <link
+    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+    <title>Quentinha Delivery</title>
+</head>
+<body>
+<!-- INICIO CABEÇALHO DO SITE -->
+<header class="topo-site">
+    <a href="" class="logo">
+        <i class="fa fa-utensils"></i>
+       Quentinha Delivery
+    </a>
+    <nav class="menu-site">
+        <a href="/">Inicio</a>
+        <a href="/empresa">Empresa</a>
+        <a href="/cardapio">Cardapio</a>
+        <a href="">Montar pedido</a>
+        <a href="/blog">Blog</a>
+        <a href="/contatos">Fale conosco</a>
+    </nav>
+    <div class="icons">
+        <div id="cart" class="fa fa-shopping-cart"></div>
+        <div id="login" class="fa fa-users"></div>
+        <div id="menu" class="fa fa-bars"></div>
+        <a href="/admin"  target="_blank" class="fa fa-user-shield admin-icon" title="Admin"></a> 
+  
+    </div>
+    <div class="carrinho">
+      <!--   <h1 style="text-align: center;color: gray;">Carrinho vazio</h1> -->
+
+
+        <!-- Box do item no carrinho -->
+
+        <div class="box">
+            <i class="fa fa-times"></i>
+            <img src="assets/imgs/quentinha2.png" width="100" height="70" alt="">
+            <div class="content">
+                <h3>Marmita Fitness</h3>
+                <span class="quantidade">1</span>
+                <span class="multiplica">x</span>
+                <span class="valor">R$ 12,00</span>
+            </div>
+        </div>
+        
+        <h3 class="total"> Total: 00,00 </h3>
+        <a href="" class="btn">Fechar pedido </a>
+    </div>
+    <form action="admin/login/?next=/admin/" method="post" class="login-form">
+        {% csrf_token %}
+        <h3>Acesso à conta</h3>
+        <input type="text" name="username" placeholder="Seu E-mail" class="box">
+        <input type="password" name="password" placeholder="Sua senha" class="box">
+        <div class="lembrar-senha">
+            <input type="checkbox" name="remember" id="relembrar">
+            <label for="relembrar">Me lembrar da senha</label>
+        </div>
+        <button type="submit" name="sendLogin" class="btn">Acessar</button>
+    </form>
+</header>
+<main>
+
+<!-- INICIO SLIDE DESTAQUE SITE-->
+
+<section class="qd_destaque">
+    <!-- Slider main container -->
+    <div class="swiper home-slider">
+        <div class="swiper-wrapper">
+
+            <!-- INICIO ITEM SLIDE HOME DO SITE -->
+            <div class="swiper-slide slide" style="background: url(assets/imgs/slides/slide1.png) no-repeat;">
+                <div class="content">
+                    <h3> A <span>melhor</span> quentinha <br> da cidade</h3>
+                    <a href="" class="btn">Comprar agora </a>
+                </div>
+            </div>  
+
+            <!-- FIM ITEM SLIDE HOME DO SITE -->
+
+            <!-- INICIO ITEM 2 SLIDE HOME DO SITE -->
+            <div class="swiper-slide slide" style="background: url(assets/imgs/slides/slide2.png) no-repeat;">
+                <div class="content">
+                    <h3> A <span>melhor</span> quentinha <br> da cidade</h3>
+                    <a href="" class="btn">Comprar agora </a>
+                </div>
+            </div>  
+            
+            <!-- FIM ITEM 2 SLIDE HOME DO SITE -->
+        </div>
+        
+        
+        <!-- INICIO BOTOES SLIDE HOME DO SITE -->
+        
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        
+        
+        <!-- FIM BOTOES SLIDE HOME DO SITE -->
+  </div>
+</section>
+
+
+<!-- FIM SLIDE DESTAQUE SITE-->
+
+<!-- INICIO DESTAQUE DO SITE-->
+
+<section class="destaque">
+    <div class="box-container">
+        <!-- INICIO ITEM DESTAQUE DO SITE-->
+        <div class="box">
+            <div class="qdimg">
+                <img src="assets/imgs/destaques/1.png" alt="">
+            </div>
+            <div class="content">
+                <h3>Marmitas diversas</h3>
+            </div>
+        </div>
+        <!-- FIM ITEM DESTAQUE DO SITE-->
+
+        <!-- INICIO ITEM DESTAQUE DO SITE-->
+        <div class="box">
+            <div class="qdimg">
+                <img src="assets/imgs/destaques/2.png" alt="">
+            </div>
+            <div class="content">
+                <h3>Comida caseira</h3>
+            </div>
+        </div>
+        <!-- FIM ITEM DESTAQUE DO SITE-->
+
+        <!-- INICIO ITEM DESTAQUE DO SITE-->
+        <div class="box">
+            <div class="qdimg">
+                <img src="assets/imgs/destaques/3.png" alt="">
+            </div>
+            <div class="content">
+                <h3>Diversas protéinas</h3>
+            </div>
+        </div>
+        <!-- FIM ITEM DESTAQUE DO SITE-->
+    </div>
+</section>
+
+<!-- FIM DESTAQUE DO SITE-->
+
+<!-- INICIO COMO FUNCIONA O -->
+
+<div class="como-funciona">
+    <h1 class="titulo"> Como <span>Funciona</span></h1>
+    <div class="box-container">
+        <!-- INICIO ITEM COMO FUNCIONA O -->
+
+        <div class="box">
+            <img src="assets/imgs/como-funciona/1.png"  alt="">
+            <h3>Faça seu pedido</h3>
+        </div>
+        <!-- FIM ITEM COMO FUNCIONA O -->
+        <!-- INICIO ITEM COMO FUNCIONA O -->
+
+        <div class="box">
+            <img src="assets/imgs/como-funciona/2.png"  alt="">
+            <h3>Entrega rápida</h3>
+        </div>
+        <!-- FIM ITEM COMO FUNCIONA O -->
+        <!-- INICIO ITEM COMO FUNCIONA O -->
+
+        <div class="box">
+            <img src="assets/imgs/como-funciona/3.png"  alt="">
+            <h3>Pagamento fácil</h3>
+        </div>
+        <!-- FIM ITEM COMO FUNCIONA O -->
+        <!-- INICIO ITEM COMO FUNCIONA O -->
+
+        <div class="box">
+            <img src="assets/imgs/como-funciona/4.png"  alt="">
+            <h3>Bom apetite</h3>
+        </div>
+        <!-- FIM ITEM COMO FUNCIONA O -->
+
+    </div>
+</div>
+
+<!-- FIM COMO FUNCIONA O -->
+
+<!-- INICIO LOJA VIRTUAL SITE -->
+
+<section class="loja">
+
+    <h1 class="titulo"> QUENTINHAS <span>DISPONIVEIS</span></h1>
+    <div class="box-container">
+        <!-- INICIO ITEM LOJA SITE -->
+        {% for produto in quentinhas %}
+        <div class="box">
+            {{produto.capa|safe}}
+            <h3>{{ produto.titulo}}</h3>
+            <p>{{produto.descricao | safe}}</p>
+            <div class="estrelas">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <div class="loja_valor">
+                R$ {{produto.valor_promo}}<span> R$ {{produto.valor}}</span>
+            </div>
+            <a href="{% url 'pro_cardapio' produto.id %}" class="btn">Adicionar ao carrinho</a>
+        </div>
+        {% endfor %}
+        
+        <!-- FIM ITEM LOJA SITE -->        
+        
+    </div>
+    
+
+</section>
+
+
+
+<!-- FIM LOJA VIRTUAL SITE -->
+
+<!-- INICIO SOBRE A EMPRESA SITE -->
+
+<section class="empresa">
+    <div class="row">
+        <div class="empresa-img">
+            <img src="{% static 'img/empresa_video.gif' %}" alt="780x900">
+        </div>
+        <div class="content">
+            <h3>{{ dados.nome }}: {{dados.subtitulo|safe}}  </h3>
+            {{ dados.descricao|safe}}
+            <a href="/empresa" class="btn">Saiba mais</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- FIM SOBRE A EMPRESA SITE -->
+
+<!-- INICIO BLOG SITE -->
+
+<section class="blogs">
+    <h1 class="titulo">Nosso <span>blog</span></h1>
+    <div class="box-container">
+        <!-- INICIO ITEM BLOG SITE -->
+            <div class="box">
+                <img src="assets/imgs/blog/2.png" alt="">
+                <div class="icons">
+                    <a href="" title="">
+                        <i class="fas fa-calendar"></i> 07 de março de 2024
+                    </a>
+                    <a href="" title="">
+                        <i class="fas fa-user"></i> Olavo Adriel
+                    </a>
+                </div>
+                <h1>Marmita e Quentinha Brasileira</h1>
+                <p> Sabor e Praticidade na Medida Certa</p>
+                <a href="" class="btn">Saiba mais</a>
+            </div>
+        
+        <!-- FIM ITEM BLOG SITE -->
+
+        <!-- INICIO ITEM BLOG SITE -->
+            <div class="box">
+                <img src="assets/imgs/blog/2.png" alt="">
+                <div class="icons">
+                    <a href="" title="">
+                        <i class="fas fa-calendar"></i> 07 de março de 2024
+                    </a>
+                    <a href="" title="">
+                        <i class="fas fa-user"></i> Olavo Adriel
+                    </a>
+                </div>
+                <h1>Marmita e Quentinha Brasileira</h1>
+                <p> Sabor e Praticidade na Medida Certa</p>
+                <a href="" class="btn">Saiba mais</a>
+            </div>
+        
+        <!-- FIM ITEM BLOG SITE -->
+
+
+    </div>
+</section>
+
+<!-- FIM BLOG SITE -->
+
+<br>
+<br>
+<!-- INICIO RODAPE SITE -->
+
+</main>
+<section class="rodape">
+    <div class="box-container">
+        <div class="box">
+            <h3>{{dados.nome}}</h3>
+            <p>Melhor quentinha da cidade</p>
+            <div class="rede-sociais">
+                <a href="" class="fab fa-facebook-f"></a>
+                <a href="//www.instagram.com/quentinhadelivery0" class="fab fa-instagram"></a>
+                <a href="" class="fab fa-youtube"></a>
+                <a href="" class="fab fa-facebook-f"></a>
+            </div>
+        </div>
+        <div class="box">
+            <h3>Faça seu pedido</h3>
+            <a class="link" title="WhatsApp" href="//api.whatsapp.com/send/?phone={{dados.formatar_wtt}}&text=Olá gostaria+de+fazer+um+pedido%21&type=phone_number&app_absent=0">{{ dados.fone}} </a><br><br>
+            <a class="link" href="mailto:quentinhadelivery@gmail.com" title="quentinhadelivery@gmail.com">quentinhadelivery@gmail.com</a>
+        </div>
+        <div class="box">
+            <h3>Localização</h3>
+            <p>
+                {{dados.endereco}}, {{dados.numero}} <br>
+               {{ dados.bairro}} <br>
+                {{dados.cidade.nome}}/{{dados.cidade.uf}} <br>
+                {{ dados.cep}}
+            </p>
+        </div>
+    </div>
+    <div class="direitos">
+        Criado por <span> Olavo Adriel </span> | Todos os direitos reservados
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="assets/js/qd.js"></script>
+</body>
+</html>

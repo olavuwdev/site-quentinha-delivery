@@ -1,0 +1,267 @@
+
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+		<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+		<script type="text/javascript">
+			window.tailwind.config = {
+				darkMode: ['class'],
+				theme: {
+					extend: {
+						colors: {
+							border: 'hsl(var(--border))',
+							input: 'hsl(var(--input))',
+							ring: 'hsl(var(--ring))',
+							background: 'hsl(var(--background))',
+							foreground: 'hsl(var(--foreground))',
+							primary: {
+								DEFAULT: 'hsl(var(--primary))',
+								foreground: 'hsl(var(--primary-foreground))'
+							},
+							secondary: {
+								DEFAULT: 'hsl(var(--secondary))',
+								foreground: 'hsl(var(--secondary-foreground))'
+							},
+							destructive: {
+								DEFAULT: 'hsl(var(--destructive))',
+								foreground: 'hsl(var(--destructive-foreground))'
+							},
+							muted: {
+								DEFAULT: 'hsl(var(--muted))',
+								foreground: 'hsl(var(--muted-foreground))'
+							},
+							accent: {
+								DEFAULT: 'hsl(var(--accent))',
+								foreground: 'hsl(var(--accent-foreground))'
+							},
+							popover: {
+								DEFAULT: 'hsl(var(--popover))',
+								foreground: 'hsl(var(--popover-foreground))'
+							},
+							card: {
+								DEFAULT: 'hsl(var(--card))',
+								foreground: 'hsl(var(--card-foreground))'
+							},
+						},
+					}
+				}
+			}
+		</script>
+        <style>
+            
+            .img-produto img {
+                width: 96px !important;
+                height: auto !important;
+            }
+        </style>
+		<style type="text/tailwindcss">
+			@layer base {
+				:root {
+					--background: 0 0% 100%;
+--foreground: 240 10% 3.9%;
+--card: 0 0% 100%;
+--card-foreground: 240 10% 3.9%;
+--popover: 0 0% 100%;
+--popover-foreground: 240 10% 3.9%;
+--primary: 240 5.9% 10%;
+--primary-foreground: 0 0% 98%;
+--secondary: 240 4.8% 95.9%;
+--secondary-foreground: 240 5.9% 10%;
+--muted: 240 4.8% 95.9%;
+--muted-foreground: 240 3.8% 46.1%;
+--accent: 240 4.8% 95.9%;
+--accent-foreground: 240 5.9% 10%;
+--destructive: 0 84.2% 60.2%;
+--destructive-foreground: 0 0% 98%;
+--border: 240 5.9% 90%;
+--input: 240 5.9% 90%;
+--ring: 240 5.9% 10%;
+--radius: 0.5rem;
+				}
+				.dark {
+					--background: 240 10% 3.9%;
+--foreground: 0 0% 98%;
+--card: 240 10% 3.9%;
+--card-foreground: 0 0% 98%;
+--popover: 240 10% 3.9%;
+--popover-foreground: 0 0% 98%;
+--primary: 0 0% 98%;
+--primary-foreground: 240 5.9% 10%;
+--secondary: 240 3.7% 15.9%;
+--secondary-foreground: 0 0% 98%;
+--muted: 240 3.7% 15.9%;
+--muted-foreground: 240 5% 64.9%;
+--accent: 240 3.7% 15.9%;
+--accent-foreground: 0 0% 98%;
+--destructive: 0 62.8% 30.6%;
+--destructive-foreground: 0 0% 98%;
+--border: 240 3.7% 15.9%;
+--input: 240 3.7% 15.9%;
+--ring: 240 4.9% 83.9%;
+				}
+			}
+
+
+		</style>
+  </head>
+  <body>
+  <!-- Seta de retorno -->
+  <a href="{% url 'menu' %}" class="fixed top-4 left-4 text-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </a>
+
+  <div class="bg-background p-4 rounded-lg shadow-md">
+    <h2 class="text-center font-bold text-primary mb-4">Carrinho de compras</h2>
+	{% if pedido_cart %}
+    <!-- Inicio do loop para os produto -->
+
+    {% for item in pedido_cart %}
+
+	<div id="item_{{ item.id }}" class="flex items-center justify-between bg-card p-4 rounded-lg mb-4 relative" >
+		<div class="img-produto">
+		  {{ item.imagem | safe }}
+		</div>
+		<div class="flex-1 mx-4">
+		  <h3 class="text-lg font-semibold text-purple-600">{{ item.produto }}</h3>
+		  <p class="text-sm text-muted-foreground">
+			<p class="text-sm font-bold">{{ item.proteinas|join:", " }}</p>
+			<p class="text-xs">{{ item.acompanhamentos|join:", " }}</p>
+		  </p>
+		  <p class="text-sm font-bold">R$ <span id="preco_{{ item.id }}">{{ item.preco }}</span> </p>
+		</div>
+		<div class="flex flex-col items-center">
+		  <div class="flex items-center">
+			<button class="bg-secondary text-secondary-foreground p-2 rounded" onclick="updateQuantity(-1, '{{ item.id }}', '{{item.pedido_id}}')">-</button>
+			<span class="mx-1" id="quantidade_{{ item.id }}">{{ item.quantidade }}</span>
+			<button class="bg-secondary text-secondary-foreground p-2 rounded" onclick="updateQuantity(1, '{{ item.id  }}', '{{item.pedido_id}}')">+</button>
+		  </div>
+		  <p class="text-sm font-bold mt-2">R$ <span name="total_no_item" id="total_{{ item.id }}">{{ item.total }}</span></p>
+		</div>
+		<form method="post" onsubmit="event.preventDefault(); removerItem('{{ item.id }}')">
+			{% csrf_token %}
+			<input type="hidden" name="item_id" value="{{ item.id  }}">
+			<button type="submit" class="absolute top-2 left-4 bg-destructive text-destructive-foreground p-1 rounded">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-3 h-3">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+				</svg>
+			</button>
+		</form>
+	  </div>
+	  
+	  
+  {% endfor %}
+
+
+  <div class="fixed bottom-0 w-full text-center bg-white p-4">
+	<p class="text-lg font-bold">Total: R$ <span class="total_carrinho" id="total_carrinho">{{ total_carrinho  }}</span> reais</p>
+    <button class="bg-primary text-primary-foreground p-3 rounded-lg mt-4">Finalizar Compra </button>
+  </div>
+  {% else %}
+  <div class="main_vazio" style="text-align: center; font-size: larger;">
+	  <div class="carrinho_vazio">
+		  <p class="text_carrinho_vazio">
+			  Seu carrinho está vazio.
+		  </p>
+	  </div>
+  {% endif %}
+  <a href="{% url 'menu' %}">
+	  Voltar ao cardápio
+	  
+  </a>
+  </div>
+  
+</div>
+  </body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    updateCartTotal(); // Atualiza o total geral do carrinho ao carregar a página
+});
+
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
+function removerItem(itemId) {
+    fetch('/remover_item/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': getCSRFToken(),
+        },
+        body: new URLSearchParams({
+            'item_id': itemId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+			const totalPedidoDiv = document.getElementById("total_carrinho")
+            document.getElementById(`item_${itemId}`).remove(); // Remove o item da UI
+            totalPedidoDiv.textContent = data.total_carrinho.toFixed(2); // Atualiza o total do carrinho
+        } else {
+            console.error(data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
+
+
+function updateQuantity(change, itemId, id_pedido) {
+    const quantityDiv = document.getElementById(`quantidade_${itemId}`);
+    let quantity = parseInt(quantityDiv.textContent);
+    const newQuantity = quantity + change;
+
+    if (newQuantity >= 1) {  // Evita que a quantidade seja menor que 1
+        // Atualiza a quantidade na interface
+        quantityDiv.textContent = newQuantity;
+
+        // Envia a nova quantidade ao servidor via fetch
+        fetch('/atualizar_quantidade/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+            },
+            body: JSON.stringify({
+                item_id: itemId,
+                quantidade: newQuantity,
+				id_pedido:id_pedido
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.log('Erro ao atualizar a quantidade no servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+				console.log("Entrou");
+				
+                const totalItemDiv = document.getElementById(`total_${itemId}`);
+				const totalPedidoDiv = document.getElementById("total_carrinho")
+                totalItemDiv.textContent = `${data.total.toFixed(2)}`;
+				totalPedidoDiv.textContent = `${data.total_pedido.toFixed(2)}`;
+            } else {
+                console.error(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+    }
+}
+
+
+
+
+</script>

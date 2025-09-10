@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Cardápio</title>
+</head>
+<body class="p-6 bg-gray-100">
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-2xl font-bold mb-4">Monte sua Marmita</h1>
+        
+        <form id="pedidoForm" class="space-y-4">
+            <div>
+                <label class="block font-semibold">Proteína:</label>
+                <select name="proteina" class="w-full border p-2 rounded">
+                    {% for proteina in proteinas %}
+                        <option value="{{ proteina.nome }}">{{ proteina.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class="block font-semibold">Carboidrato:</label>
+                <select name="carboidrato" class="w-full border p-2 rounded">
+                    {% for carboidrato in carboidratos %}
+                        <option value="{{ carboidrato.nome }}">{{ carboidrato.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class="block font-semibold">Bebida:</label>
+                <select name="bebida" class="w-full border p-2 rounded">
+                    {% for bebida in bebidas %}
+                        <option value="{{ bebida.nome }}">{{ bebida.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class="block font-semibold">Tamanho:</label>
+                <select name="tamanho" class="w-full border p-2 rounded">
+                    <option value="P">P</option>
+                    <option value="M">M</option>
+                </select>
+            </div>
+            
+            <button type="button" onclick="enviarPedido()" class="w-full bg-green-500 text-white p-3 rounded-lg">Fazer Pedido</button>
+        </form>
+    </div>
+
+    <script>
+        function enviarPedido() {
+            const form = document.getElementById("pedidoForm");
+            const data = new FormData(form);
+            const params = new URLSearchParams(data).toString();
+            window.location.href = `https://api.whatsapp.com/send?phone=SEU_NUMERO&text=Pedido:%20${params}`;
+        }
+    </script>
+</body>
+</html>

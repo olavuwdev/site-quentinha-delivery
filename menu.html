@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- INICIO TOPO DA PAGINA DO SITE -->
+
+<div class="topo-pagina">
+    <h1>Menu de Quentinhas</h1>
+    <p><a href="/" title="sobre nós">Inicio ></a> Cardapio </p>
+</div>
+
+<!-- FIM TOPO DA PAGINA DO SITE -->
+
+<!-- INICIO SLIDE DE COMPRAS DO SITE -->
+
+<section class="menu">
+    
+    <!-- INICIO SLIDE PRINCIPAL DE COMPRAS DO SITE -->
+    <div class="swiper menu-slider">
+        
+        <div class="swiper-wrapper">
+            <!-- INICIO ITEM SLIDE PRINCIPAL -->
+            <div class="swiper-slide slider">
+                <h3 class="titulo"> Quentinhas</h3>
+                <div class="box-container">
+
+                    <!-- INICIO SUB ITEM SLIDE PRINCIPAL -->
+                     {% for produto in quentinhas %}
+                     <a href="{% url 'pro_cardapio' produto.id %}">
+                     <div class="box">
+                            <div class="info">
+                                <h3>{{produto.titulo}}</h3>
+                                <p> {{produto.descricao|safe}}😋</p>
+                            </div>
+                            <div class="valor">R${{produto.valor_promo}}</div>
+                        </div>
+                    </a>
+ 
+                    <!-- FIM SUB ITEM SLIDE PRINCIPAL -->
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- FIM ITEM SLIDE PRINCIPAL -->
+
+            <!-- INICIO ITEM SLIDE PRINCIPAL -->
+            <div class="swiper-slide slider">
+                <h3 class="titulo"> Bebidas</h3>
+                <div class="box-container">
+                    {% for produto in bebidas %}
+                    <!-- INICIO SUB ITEM SLIDE PRINCIPAL -->
+                    <a href="{% url 'pro_cardapio' produto.id %}">
+                        <div class="box" >
+                            <div class="info">
+                                <h3>{{ produto.titulo}}</h3>
+                                <p>{{produto.descricao|safe}}</p>
+                            </div>
+                            <div class="valor">R${{produto.valor}}</div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    <!-- FIM SUB ITEM SLIDE PRINCIPAL -->
+
+                </div>
+            </div>
+            
+            <!-- FIM ITEM SLIDE PRINCIPAL -->
+            
+        </div>
+        <!-- INICIO PAGINAÇÃO SLIDER DO SITE -->
+        <div class="swiper-pagination"></div>
+        <!-- FIM PAGINAÇÃO SLIDER DO SITE -->
+    </div>
+    <!-- FIM SLIDE PRINCIPAL DE COMPRAS DO SITE -->
+
+    <!-- INICIO DO CARRINHO FIXO -->
+    <a href="{% url 'ver_carrinho' %}">
+        <div class="carrinho_bar">
+            <div class="carrinho-fixo">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="contador">{{ contagem }}</span>
+            </div>
+        </div>
+    </a>
+    <!-- FIM DO CARRINHO FIXO -->
+</section>
+
+<!-- FIM  SLIDE DE COMPRAS DO SITE -->
+
+<!--
+INICIO JANELA MODAL DE COMPRAS DO SITE 
+<section class="menu-modal-container" style="display: none;">
+    <div id="fechar" class="fas fa-times"></div>
+
+    <div class="menu-modal" data-target="quentinha">
+        <h3 id="modal-titulo">Quentinha M</h3>
+
+        <div class="estrelinhas" id="modal-estrelinhas">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+
+
+        <div class="valor" id="modal-preco">R$ 77,99</div>
+
+       Campos para Proteínas 
+        <div>
+            <h4>Proteínas</h4>
+            {% for proteina in proteinas %}
+            <label>
+                <input type="checkbox" name="proteinas" value="{{ proteina.id }}">{{ proteina.titulo }}
+            </label>
+            {% endfor %}
+        </div>
+
+       Campos para Acompanhamentos 
+        <div>
+            <h4>Acompanhamentos</h4>
+            {% for acompa in acompanhamento %}
+            <label>
+                <input type="checkbox" name="acompanhamentos" value="{{ acompa.id }}">{{ acompanhamento.nome }}
+            </label>
+            {% endfor %}
+        </div>
+
+       Campo de Observação 
+        <div>
+            <h4>Observação</h4>
+            <textarea id="observacoes"></textarea>
+        </div>
+
+        Botão para adicionar ao carrinho 
+        <button class="btn" id="adicionarCarrinho">Adicionar ao carrinho</button>
+    </div>
+</section>
+-->
+<!-- FINAL MODAL -->
+{% endblock %}
